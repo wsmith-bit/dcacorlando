@@ -1131,32 +1131,34 @@
  <p>Quick response · Serving Casselberry, FL 24/7/365</p>
 <p>Serving Casselberry and the greater Seminole area with professional HVAC Repair.</p>
  </div>
- <div class="appt-card-body">
+ <form class="appt-card-body" id="lead-form" action="https://refrdai-leads.bostonseoservice.workers.dev/" method="POST">
+ <input type="hidden" name="city" value="">
+ <input type="hidden" name="page_url" value="">
  <div class="fgroup-row">
  <div class="fgroup">
  <label for="f-name">Your Name</label>
- <input type="text" id="f-name" placeholder="Jane Smith">
+ <input type="text" id="f-name" name="name" autocomplete="name" required placeholder="Jane Smith">
  </div>
  <div class="fgroup">
  <label for="f-phone">Phone Number</label>
- <input type="tel" id="f-phone" placeholder="(321) 555-0000">
+ <input type="tel" id="f-phone" name="phone" autocomplete="tel" required placeholder="(321) 555-0000">
  </div>
  </div>
  <div class="fgroup">
  <label for="f-email">Email Address</label>
- <input type="email" id="f-email" placeholder="you@email.com">
+ <input type="email" id="f-email" name="email" autocomplete="email" placeholder="you@email.com">
  </div>
  <div class="fgroup-row">
  <div class="fgroup">
  <label for="f-pet">Property Type</label>
- <select id="f-pet">
+ <select id="f-pet" name="property_type">
  <option value="">Select…</option>
  <option>Residential</option><option>Commercial</option><option>Other</option>
  </select>
  </div>
  <div class="fgroup">
  <label for="f-service">Service Needed</label>
- <select id="f-service">
+ <select id="f-service" name="service">
  <option value="">Select…</option>
  <option>Air Conditioning Repair</option>
  <option>Air Conditioning Installation</option>
@@ -1169,13 +1171,14 @@
  </div>
  <div class="fgroup">
  <label for="f-msg">Tell Us About Your HVAC Issue</label>
- <textarea id="f-msg" placeholder="Any concerns or details to share…"></textarea>
+ <textarea id="f-msg" name="message" placeholder="Any concerns or details to share…"></textarea>
  </div>
- <button class="btn-submit" onclick="submitForm()">
+ <button class="btn-submit" type="submit">
  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
  FREE ESTIMATE
  </button>
- </div>
+ <p id="form-status" role="status" aria-live="polite" style="display:none;margin-top:12px;font-size:14px;font-weight:600;color:var(--heading);"></p>
+ </form>
  </div>
 
  </div>
@@ -1857,5 +1860,73 @@
  </div>
 </footer>
 <!-- SECTION:footer END -->
+
+
+<script id="lead-form-handler">
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("lead-form");
+  if (!form) return;
+
+  const pageUrlField = form.querySelector('[name="page_url"]');
+  const cityField = form.querySelector('[name="city"]');
+  const status = document.getElementById("form-status");
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  if (pageUrlField) pageUrlField.value = window.location.href;
+
+  if (cityField) {
+    const geoPlace = document.querySelector('meta[name="geo.placename"]');
+    cityField.value = geoPlace && geoPlace.content
+      ? geoPlace.content.split(",")[0].trim()
+      : "";
+  }
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    if (status) {
+      status.style.display = "block";
+      status.textContent = "Sending your request...";
+    }
+
+    if (submitButton) submitButton.disabled = true;
+
+    try {
+      if (pageUrlField) pageUrlField.value = window.location.href;
+
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || "Form submission failed.");
+      }
+
+      if (status) {
+        status.textContent = "Thank you. Your request has been sent.";
+      }
+
+      form.reset();
+      if (pageUrlField) pageUrlField.value = window.location.href;
+      if (cityField) {
+        const geoPlace = document.querySelector('meta[name="geo.placename"]');
+        cityField.value = geoPlace && geoPlace.content
+          ? geoPlace.content.split(",")[0].trim()
+          : "";
+      }
+    } catch (error) {
+      console.error("Lead form error:", error);
+      if (status) {
+        status.textContent = "Something went wrong. Please call us directly at (321) 436-6595.";
+      }
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
+  });
+});
+</script>
 
 </body></html>
