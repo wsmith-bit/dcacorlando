@@ -2,7 +2,7 @@
 
 User-agent: *
 Allow: /
-Sitemap: https://orlandoairconditioningrepair.com/sitemap.xml
+Sitemap: https://orlandoairconditioning.net/sitemap.xml
 
 # AI Crawlers
 User-agent: GPTBot
