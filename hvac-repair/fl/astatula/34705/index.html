@@ -150,8 +150,8 @@
  1. ANNOUNCEMENT BAR
  ================================================================ */
 .announce {
- background: var(--heading);
- color: rgba(255,255,255,.88);
+ background: #2f5fa0;
+ color: rgba(255,255,255,.94);
  padding: 9px 20px; text-align: center;
  font-size: 13.5px; font-weight: 500;
  display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -177,8 +177,8 @@
  ================================================================ */
 .site-header {
  position: sticky; top: 0; z-index: 1000;
- background: #fff;
- border-bottom: 1px solid var(--border);
+ background: #013671;
+ border-bottom: 1px solid rgba(255,255,255,.14);
  transition: box-shadow.3s;
  }
 .site-header.scrolled { box-shadow: var(--shadow-md); border-color: transparent; }
@@ -200,10 +200,10 @@
 .logo-mark svg { width: 26px; height: 26px; fill: #fff; }
 .logo-text-wrap strong {
  display: block; font-size: 17px; font-weight: 800;
- color: var(--heading); line-height: 1.1;
+ color: #fff; line-height: 1.1;
  }
 .logo-text-wrap span {
- font-size: 11px; font-weight: 600; color: var(--teal-dark);
+ font-size: 11px; font-weight: 600; color: rgba(255,255,255,.78);
  letter-spacing:.05em; text-transform: uppercase;
  }
 
@@ -211,15 +211,15 @@
 .main-nav { display: flex; align-items: center; gap: 2px; }
 .main-nav a {
  padding: 8px 15px; border-radius: 8px;
- font-size: 14.5px; font-weight: 600; color: var(--body);
+ font-size: 14.5px; font-weight: 600; color: #fff;
  transition: background.18s, color.18s;
  }
-.main-nav a:hover { background: var(--teal-light); color: var(--teal-dark); }
+.main-nav a:hover { background: rgba(255,255,255,.12); color: #fff; }
 
 .nav-right { display: flex; align-items: center; gap: 12px; }
 .nav-phone {
  display: flex; align-items: center; gap: 7px;
- font-size: 15px; font-weight: 700; color: var(--teal-dark);
+ font-size: 15px; font-weight: 700; color: #fff;
  }
 .nav-phone svg { width: 16px; height: 16px; }
 
@@ -228,7 +228,7 @@
  display: none; flex-direction: column; gap: 5px;
  border: none; background: none; cursor: pointer; padding: 6px;
  }
-.hamburger span { display: block; width: 24px; height: 2.5px; background: var(--heading); border-radius: 2px; transition:.3s; }
+.hamburger span { display: block; width: 24px; height: 2.5px; background: #fff; border-radius: 2px; transition:.3s; }
 .hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
 .hamburger.active span:nth-child(2) { opacity: 0; }
 .hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
@@ -236,13 +236,13 @@
  /* Mobile nav */
 .mobile-menu {
  display: none; flex-direction: column;
- background: #fff; border-top: 1px solid var(--border);
+ background: #013671; border-top: 1px solid rgba(255,255,255,.14);
  padding: 16px 28px 24px;
  }
 .mobile-menu.open { display: flex; }
 .mobile-menu a {
- padding: 13px 0; font-weight: 600; color: var(--body);
- border-bottom: 1px solid var(--gray-light); font-size: 15px;
+ padding: 13px 0; font-weight: 600; color: #fff;
+ border-bottom: 1px solid rgba(255,255,255,.14); font-size: 15px;
  }
 .mobile-menu a:last-child { border: none; }
 
@@ -254,9 +254,9 @@
  background:
     linear-gradient(
       135deg,
-      rgba(20, 184, 166, 0.8) 0%,
-      rgba(13, 148, 136, 0.8) 55%,
-      rgba(42, 128, 144, 0.8) 100%
+      rgba(1, 38, 79, 0.84) 0%,
+      rgba(1, 54, 113, 0.78) 55%,
+      rgba(1, 38, 79, 0.74) 100%
     ),
     url("assets/hvac/dc-ac-hero.jpeg");	
  position: relative; overflow: hidden;
@@ -914,9 +914,9 @@
  position: absolute; inset: 0; z-index: 1; pointer-events: none;
  background: linear-gradient(
   135deg,
-  rgba(20, 184, 166, 0.8) 0%,
-  rgba(13, 148, 136, 0.8) 55%,
-  rgba(42, 128, 144, 0.8) 100%
+  rgba(1, 38, 79, 0.84) 0%,
+  rgba(1, 54, 113, 0.78) 55%,
+  rgba(1, 38, 79, 0.74) 100%
  );
 }
 .hero::before, .hero::after, .hero-dots { z-index: 1; }
