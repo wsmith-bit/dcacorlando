@@ -72,7 +72,7 @@ def main():
     parser.add_argument("files", nargs="*")
     args = parser.parse_args()
 
-    paths = args.files or sorted(glob.glob("hvac-repair/fl/*/*/index.html"))
+    paths = args.files or sorted(glob.glob("hvac-repair/fl/*/*/index.html")) + ["index.html"]
 
     changed_count = 0
     for path in paths:
